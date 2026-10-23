@@ -1,0 +1,95 @@
+{
+  "workbook": "Business_Valuation.xlsx",
+  "workbook_sha256": "e2f2e210d2705c4b52fc01b044d6a6208384c8e1c282c205c2b6e2c5d4adfc22",
+  "valuation_date": "2026-07-31",
+  "checks": {
+    "base_operating_ev": {
+      "maximum_absolute_error_usdm": 4.540150985121727e-05,
+      "tolerance_usdm": 0.02,
+      "passed": true
+    },
+    "explicit_capex": {
+      "maximum_absolute_error_usdm": 4.475112655200064e-05,
+      "tolerance_usdm": 0.02,
+      "passed": true
+    },
+    "explicit_depreciation": {
+      "maximum_absolute_error_usdm": 2.743602090049535e-05,
+      "tolerance_usdm": 0.02,
+      "passed": true
+    },
+    "explicit_nopat": {
+      "maximum_absolute_error_usdm": 4.782326868735254e-05,
+      "tolerance_usdm": 0.02,
+      "passed": true
+    },
+    "explicit_fcff": {
+      "maximum_absolute_error_usdm": 4.387268563732505e-05,
+      "tolerance_usdm": 0.02,
+      "passed": true
+    },
+    "explicit_operating_wc": {
+      "maximum_absolute_error_usdm": 6.921029125805944e-06,
+      "tolerance_usdm": 0.02,
+      "passed": true
+    },
+    "explicit_wc_investment": {
+      "maximum_absolute_error_usdm": 1.4734009710082319e-06,
+      "tolerance_usdm": 0.02,
+      "passed": true
+    },
+    "transition_fcff": {
+      "maximum_absolute_error_usdm": 3.5348639357835054e-05,
+      "tolerance_usdm": 0.02,
+      "passed": true
+    },
+    "pv_explicit": {
+      "maximum_absolute_error_usdm": 1.2852076906710863e-05,
+      "tolerance_usdm": 0.02,
+      "passed": true
+    },
+    "pv_transition": {
+      "maximum_absolute_error_usdm": 4.489754792302847e-05,
+      "tolerance_usdm": 0.02,
+      "passed": true
+    },
+    "pv_terminal": {
+      "maximum_absolute_error_usdm": 0.0003573470748960972,
+      "tolerance_usdm": 0.02,
+      "passed": true
+    },
+    "bear_scenario_snapshot": {
+      "passed": true,
+      "maximum_absolute_error_usdbn": 0.0005857007043061913,
+      "tolerance_usdbn": 0.1
+    },
+    "base_scenario_snapshot": {
+      "passed": true,
+      "maximum_absolute_error_usdbn": 4.540152076515369e-08,
+      "tolerance_usdbn": 0.1
+    },
+    "bull_scenario_snapshot": {
+      "passed": true,
+      "maximum_absolute_error_usdbn": 0.0008642556158520165,
+      "tolerance_usdbn": 0.1
+    }
+  },
+  "deterministic_scenarios": {
+    "bear": {
+      "operating_ev_usdm": 244345.57648684457,
+      "starting_return": 0.03584962440856407,
+      "terminal_return": 0.03584962440856407
+    },
+    "base": {
+      "operating_ev_usdm": 2163468.3859545984,
+      "starting_return": 0.2009949617779829,
+      "terminal_return": 0.12
+    },
+    "bull": {
+      "operating_ev_usdm": 4042558.130320631,
+      "starting_return": 0.25245487871205613,
+      "terminal_return": 0.16
+    }
+  },
+  "passed": true
+}

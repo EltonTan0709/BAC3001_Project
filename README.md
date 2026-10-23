@@ -1,0 +1,187 @@
+# BAC3001 — Alphabet Valuation and Monte Carlo Simulation
+
+Reproducible Python implementation of Group 9's Alphabet operating DCF, backed by
+the included valuation workbook. The valuation date is **31 July 2026**. The workbook
+snapshot was exported on **23 October 2026**; it is a frozen project version, not a
+live market-data feed. The written report is excluded from this repository.
+
+## Repository structure
+
+```text
+BAC3001_Project/
+├── README.md
+├── requirements.txt                # Tested Python dependencies
+├── requirements-lock.txt           # Exact direct and transitive package versions
+├── alphabet_model.py               # Segment forecast, capital schedule and DCF engine
+├── workbook_inputs.py              # XLSX input mappings and layout checks
+├── monte_carlo.py                  # 17-driver simulation, charts and reverse DCF
+├── robustness.py                   # Distribution, correlation and WACC checks
+├── verify_model.py                 # Python-to-workbook reconciliation
+├── data/
+│   ├── Business_Valuation.xlsx      # Complete formula workbook with cached values
+│   └── workbook_manifest.json      # Source, export date and SHA-256 fingerprint
+└── results/
+    ├── verification.json
+    ├── monte_carlo_results.json
+    ├── robustness_results.json
+    ├── mc_histogram.png
+    └── mc_tornado.png
+```
+
+Installed package directories, virtual environments, local audit files and other
+coursework are excluded through `.gitignore`. Dependencies are installed with pip.
+
+## Set up
+
+Use **Python 3.12** and Git. Python 3.11 is insufficient for the pinned NumPy version.
+The commands below run from the repository root. Excel, a Google login and API keys
+are not required to reproduce the included snapshot.
+
+### Windows PowerShell
+
+```powershell
+git clone https://github.com/EltonTan0709/BAC3001_Project.git
+cd BAC3001_Project
+py -3.12 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements-lock.txt
+.\.venv\Scripts\python.exe verify_model.py
+.\.venv\Scripts\python.exe monte_carlo.py --trials 10000 --seed 7
+.\.venv\Scripts\python.exe robustness.py --trials 10000 --seed 7
+```
+
+Using the virtual environment's Python directly avoids PowerShell activation-policy
+issues. `requirements.txt` pins the three direct dependencies; `requirements-lock.txt`
+also fixes their dependencies to the versions used for the committed results.
+
+### macOS / Linux
+
+```bash
+git clone https://github.com/EltonTan0709/BAC3001_Project.git
+cd BAC3001_Project
+python3.12 -m venv .venv
+.venv/bin/python -m pip install -r requirements-lock.txt
+.venv/bin/python verify_model.py
+.venv/bin/python monte_carlo.py --trials 10000 --seed 7
+.venv/bin/python robustness.py --trials 10000 --seed 7
+```
+
+All outputs are written to `results/`. Use `--output-dir another_folder` to retain a
+separate run. To inspect only the deterministic DCF, run `python alphabet_model.py`
+using the same environment. Charts render without an interactive display.
+
+## How the workbook and Python fit together
+
+`data/Business_Valuation.xlsx` contains the model's inputs, formula calculations,
+sources, sensitivity grid and relative-valuation cross-check. The main tabs are:
+
+| Workbook tabs | Role in Python |
+| --- | --- |
+| Historical base | Opening revenue, earnings, working capital and PP&E |
+| Assumptions | Bear/Base/Bull paths, tax, backlog timing, capacity and asset lives |
+| Working capital | Receivables and operating assets less operating liabilities; required cash included |
+| Capital and FCFF | Period lengths and acquired-intangible amortisation schedule; cash flows recomputed in Python |
+| Cloud demand | Opening backlog; demand and delivery recomputed in Python |
+| Financial assets / Valuation | Operating-cash reserve, valuation date, WACC and equity bridge |
+| Simulation inputs | Latent correlations, range rationale and scenario comparison snapshots |
+| Relative valuation | Multiples-based SOTP cross-check; retained in Excel, not recomputed by the simulation |
+
+`workbook_inputs.py` reads the workbook's **saved numeric values**, including cached
+formula results. Python then recomputes segment earnings, Cloud delivery, cohort
+depreciation, operating working capital, FCFF, transition reinvestment and terminal
+value for every trial. It does not execute Excel or Google Sheets formulas.
+
+The explicit forecast covers **H2 2026 and FY2027–2031**, followed by a **2032–2036
+transition** and terminal cash flow from **2037**. FCFF is NOPAT plus PP&E depreciation
+and acquired-intangible amortisation, less cash CapEx and the increase in operating
+working capital, including required operating cash. Model figures are in **USD
+millions**; charts display USD trillions. There is no per-share target.
+
+Base WACC is approximately **9.2451%**. The simulation holds the Base equity bridge
+fixed; financing stress affects Cloud delivery rather than assigning a separate
+random value to the investment portfolio. Minority interests remain a book-value
+proxy. These are project assumptions, documented in the workbook.
+
+## Reproduce and check the results
+
+Run `verify_model.py` first. It compares Base EV, CapEx, depreciation, NOPAT,
+working-capital investment, FCFF and present values with workbook caches. It also
+compares the three full scenarios with the workbook's scenario snapshots. A failed
+check exits with an error instead of silently accepting a different model.
+
+Rounded reference values for the included workbook are:
+
+| Output | Operating EV (USD tn) |
+| --- | ---: |
+| Full Bear scenario | 0.244 |
+| Base | 2.163 |
+| Full Bull scenario | 4.043 |
+| Monte Carlo P10 | 1.642 |
+| Monte Carlo median | 2.035 |
+| Monte Carlo P90 | 2.444 |
+| Market-implied operating EV | 4.167 |
+
+The workbook-backed version uses unrounded working-capital inputs, improving Base
+reconciliation over the earlier copied-input replica. Differences are below USD 1m
+for these scenario EVs and do not change the report's rounded figures.
+
+`monte_carlo.py` writes:
+
+- `monte_carlo_results.json`: percentiles, valid/invalid trial counts, conditional
+  exceedance frequency, deterministic cases, tornado inputs and reverse-DCF results.
+- `mc_histogram.png`: simulated operating EV against market-implied operating EV.
+- `mc_tornado.png`: changing one driver to its Bear or Bull anchor while others stay Base.
+
+The favourable-combination search is a coordinate search within the 17 sampled
+driver ranges, not a proof of a global optimum. Inventory follows Base in the
+simulation; the full Bear/Bull scenarios also change inventory. Reverse-DCF entries
+of `null` mean no solution was bracketed within that lever's specified search range.
+
+## Simulation interpretation
+
+Each of 17 drivers receives one position `z` between **−1 (Bear)**, **0 (Base)** and
+**+1 (Bull)**. Symmetric triangular positions favour the central judgement. A
+Gaussian copula applies the ten assumed latent correlations from `Simulation inputs`.
+One position applies to a driver's whole forecast path, rather than redrawing an
+independent shock each year. Some scenario paths are asymmetric or non-monotonic,
+so the resulting financial inputs need not themselves have triangular distributions.
+
+No 25%/50%/25% or other probabilities are assigned to complete Bear/Base/Bull cases.
+P10/P50/P90 describe simulated outputs. The reported exceedance frequency is the
+number of qualifying **valid** trials divided by all valid trials; it is conditional
+on the assumptions, not an estimated real-world probability. Invalid trials are
+counted separately. Guardrails require positive starting returns, terminal return
+above terminal growth, and WACC above terminal growth.
+
+`robustness.py` reruns the model with uniform positions, independent drivers,
+stronger latent correlations and independent triangular WACC stresses of ±1 and
+±2 percentage points. Distribution comparisons share latent draws and the copula;
+the WACC tests use a separate 18-column random stream, so their 17 operating draws
+differ from the main run. The default is 10,000 trials with seed 7. The uniform
+P10–P90 range is approximately USD 1.42–2.56tn. Full results are committed in JSON.
+
+## Update inputs
+
+1. Edit assumptions in the workbook's existing layout. Recalculate in Excel or
+   Google Sheets and save/export as `.xlsx`, with **Base selected**.
+2. Replace `data/Business_Valuation.xlsx`, or point a run at another export:
+
+   ```powershell
+   .\.venv\Scripts\python.exe verify_model.py --workbook "path\to\recalculated.xlsx"
+   .\.venv\Scripts\python.exe monte_carlo.py --workbook "path\to\recalculated.xlsx"
+   ```
+
+3. Update the deterministic snapshots in `Simulation inputs` when intentionally
+   changing scenario assumptions; then rerun verification and both simulations.
+4. Record the new source/export date and SHA-256 in `data/workbook_manifest.json`
+   before committing updated outputs. Each output JSON records the workbook hash.
+
+For Python imports, `BAC3001_WORKBOOK` can select a different workbook before import.
+The scripts intentionally target this workbook layout and horizon. If tabs, row
+locations, scenario relationships or the horizon change, update the cell mappings
+and Python logic, then verify again. Several inputs shared by all cases are checked
+for equality; they cannot silently become additional scenario drivers.
+
+**Missing numeric caches:** open and recalculate the workbook in Excel or Google
+Sheets, then save/export again. Saving a formula-edited file using `openpyxl` alone
+does not calculate formulas and can remove caches. The Python loader leaves the
+workbook unchanged.

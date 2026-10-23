@@ -1,0 +1,4 @@
+# Tested with Python 3.12. Install packages rather than committing site-packages.
+numpy==2.5.4
+matplotlib==3.11.2
+openpyxl==3.1.5

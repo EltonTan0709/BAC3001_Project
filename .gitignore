@@ -1,0 +1,29 @@
+# Keep this repository limited to the reproducible valuation package.
+# Other coursework, reports, local audits and installed packages stay local.
+/*
+!/.gitignore
+!/.gitattributes
+!/README.md
+!/requirements.txt
+!/requirements-lock.txt
+!/alphabet_model.py
+!/workbook_inputs.py
+!/monte_carlo.py
+!/robustness.py
+!/verify_model.py
+!/data/
+!/results/
+
+/data/*
+!/data/Business_Valuation.xlsx
+!/data/workbook_manifest.json
+/results/*
+!/results/monte_carlo_results.json
+!/results/robustness_results.json
+!/results/verification.json
+!/results/mc_histogram.png
+!/results/mc_tornado.png
+__pycache__/
+*.py[cod]
+.env*
+~$*

@@ -1,0 +1,88 @@
+{
+  "trials": 10000,
+  "seed": 7,
+  "workbook_sha256": "e2f2e210d2705c4b52fc01b044d6a6208384c8e1c282c205c2b6e2c5d4adfc22",
+  "units": "USD millions",
+  "market_operating_ev": 4167292.1637,
+  "note": "Conditional frequencies among valid trials. WACC stress draws an independent 18th latent variable.",
+  "runs": {
+    "triangular": {
+      "p10_p50_p90": [
+        1641859.5555901758,
+        2035342.7421651725,
+        2444235.3173517855
+      ],
+      "maximum": 3251046.125662946,
+      "minimum": 980427.5756599614,
+      "valid_trials": 10000,
+      "invalid_trials": 0,
+      "above_market_count": 0,
+      "above_market_frequency": 0.0
+    },
+    "uniform": {
+      "p10_p50_p90": [
+        1423251.1628242077,
+        1967990.572244574,
+        2562663.982917443
+      ],
+      "maximum": 3615331.867291712,
+      "minimum": 724008.5294208351,
+      "valid_trials": 10000,
+      "invalid_trials": 0,
+      "above_market_count": 0,
+      "above_market_frequency": 0.0
+    },
+    "independent": {
+      "p10_p50_p90": [
+        1703655.9579341286,
+        2029905.4096937804,
+        2365620.7993851914
+      ],
+      "maximum": 3116390.0927748736,
+      "minimum": 1170363.687049224,
+      "valid_trials": 10000,
+      "invalid_trials": 0,
+      "above_market_count": 0,
+      "above_market_frequency": 0.0
+    },
+    "correlations_x1_3": {
+      "p10_p50_p90": [
+        1624884.7898099544,
+        2034954.298156002,
+        2467063.532487269
+      ],
+      "maximum": 3255447.239726277,
+      "minimum": 954771.1307752628,
+      "valid_trials": 10000,
+      "invalid_trials": 0,
+      "above_market_count": 0,
+      "above_market_frequency": 0.0
+    },
+    "wacc_plus_minus_0.01": {
+      "p10_p50_p90": [
+        1606659.0958464001,
+        2029410.81886741,
+        2513779.8868884104
+      ],
+      "maximum": 3566699.637083248,
+      "minimum": 938987.8862232541,
+      "valid_trials": 10000,
+      "invalid_trials": 0,
+      "above_market_count": 0,
+      "above_market_frequency": 0.0
+    },
+    "wacc_plus_minus_0.02": {
+      "p10_p50_p90": [
+        1527308.0917256526,
+        2027593.8486042654,
+        2697226.116737195
+      ],
+      "maximum": 4306178.618280163,
+      "minimum": 831289.457999348,
+      "valid_trials": 10000,
+      "invalid_trials": 0,
+      "above_market_count": 3,
+      "above_market_frequency": 0.0003
+    }
+  }
+}
