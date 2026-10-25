@@ -1,8 +1,9 @@
 # BAC3001 — Alphabet Valuation and Monte Carlo Simulation
 
 Reproducible Python implementation of Group 9's Alphabet operating DCF, backed by
-the included valuation workbook. The valuation date is **31 July 2026**. The workbook
-snapshot was exported on **23 October 2026**; it is a frozen project version, not a
+the included valuation workbook. The valuation date and information cutoff are
+**25 October 2026**, using **23 October 2026 market closes** (the preceding Friday).
+The workbook snapshot was exported on **25 October 2026**; it is a frozen project version, not a
 live market-data feed. The written report is excluded from this repository.
 
 ## Repository structure
@@ -96,7 +97,7 @@ and acquired-intangible amortisation, less cash CapEx and the increase in operat
 working capital, including required operating cash. Model figures are in **USD
 millions**; charts display USD trillions. There is no per-share target.
 
-Base WACC is approximately **9.2451%**. The simulation holds the Base equity bridge
+Base WACC is approximately **9.3831%**. The simulation holds the Base equity bridge
 fixed; financing stress affects Cloud delivery rather than assigning a separate
 random value to the investment portfolio. Minority interests remain a book-value
 proxy. These are project assumptions, documented in the workbook.
@@ -112,13 +113,13 @@ Rounded reference values for the included workbook are:
 
 | Output | Operating EV (USD tn) |
 | --- | ---: |
-| Full Bear scenario | 0.244 |
-| Base | 2.163 |
-| Full Bull scenario | 4.043 |
-| Monte Carlo P10 | 1.642 |
-| Monte Carlo median | 2.035 |
-| Monte Carlo P90 | 2.444 |
-| Market-implied operating EV | 4.167 |
+| Full Bear scenario | 0.260 |
+| Base | 2.167 |
+| Full Bull scenario | 4.025 |
+| Monte Carlo P10 | 1.651 |
+| Monte Carlo median | 2.041 |
+| Monte Carlo P90 | 2.446 |
+| Market-implied operating EV | 3.750 |
 
 The workbook-backed version uses unrounded working-capital inputs, improving Base
 reconciliation over the earlier copied-input replica. Differences are below USD 1m
@@ -157,7 +158,20 @@ stronger latent correlations and independent triangular WACC stresses of ±1 and
 ±2 percentage points. Distribution comparisons share latent draws and the copula;
 the WACC tests use a separate 18-column random stream, so their 17 operating draws
 differ from the main run. The default is 10,000 trials with seed 7. The uniform
-P10–P90 range is approximately USD 1.42–2.56tn. Full results are committed in JSON.
+P10–P90 range is approximately USD 1.43–2.56tn. Full results are committed in JSON.
+
+The October refresh uses the latest available Alphabet June results; it does not
+invent September actuals. The bridge estimates elapsed H2 cash flow, dividends and
+disclosed subsequent financing. SpaceX holdings are marked using the quoted price
+change under an unchanged-share-count assumption. Other debt, investment tax bases
+and minority claims retain the explicitly labelled proxies in the workbook.
+Meta's September and Oracle's August filings update the peer cross-check. Meta's
+one-off settlement cost is removed from benchmark earnings and its unpaid claim
+is included in EV. These approximations remain part of the investment judgement.
+
+No main-run trial exceeds the refreshed market EV, but the full Bull scenario does.
+The independent ±2-point WACC stress produces 14 exceedances in 10,000 valid trials
+(0.14%). A zero sample exceedance is not evidence that upside is impossible.
 
 ## Update inputs
 

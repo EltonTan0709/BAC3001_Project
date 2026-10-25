@@ -191,8 +191,15 @@ def simulate(n=10000, seed=7, output_dir="results", tax=None, nci=None):
         finally:
             am.WACC = w0
     res["max_combo_ev_wacc_minus_10bp"] = ev_at(w0 - 0.001, zmax)
-    res["max_combo_breakeven_wacc"] = brentq(lambda w: ev_at(w, zmax) - mkt_ev, 0.085, w0)
-    res["base_breakeven_wacc"] = brentq(lambda w: ev_at(w) - mkt_ev, 0.05, w0)
+    def breakeven_wacc(z=None):
+        # A market refresh can put the best case above the current market EV.
+        # Search on both sides of current WACC, above every terminal-growth rate.
+        try:
+            return brentq(lambda w: ev_at(w, z) - mkt_ev, 0.04, max(0.20, w0))
+        except ValueError:
+            return None  # No crossing in the stated economic search interval.
+    res["max_combo_breakeven_wacc"] = breakeven_wacc(zmax)
+    res["base_breakeven_wacc"] = breakeven_wacc()
     res["tornado"] = [(l, lo, hi) for l, lo, hi in rows]
     res["above_market_count"] = int((ev >= mkt_ev).sum())
     res["frequency_note"] = "Qualifying valid trials / valid trials; conditional on the model, not calibrated real-world odds."
@@ -205,7 +212,7 @@ def simulate(n=10000, seed=7, output_dir="results", tax=None, nci=None):
     ax.axvline(mkt_ev / 1e6, color="#C44E52", lw=2, label=f"Market-implied EV {mkt_ev/1e6:.2f}tn")
     ax.axvline(np.median(ev) / 1e6, color="#333333", lw=1.2, ls="--", label=f"Median {np.median(ev)/1e6:.2f}tn")
     ax.set_xlabel("Operating EV (USD tn)"); ax.set_ylabel(f"Trials (of {n:,})")
-    ax.set_title("Monte Carlo operating EV vs market-implied EV")
+    ax.set_title(f"Monte Carlo operating EV | {am.VAL_DATE:%d %B %Y}")
     ax.legend(frameon=False); ax.spines[["top", "right"]].set_visible(False)
     fig.tight_layout(); fig.savefig(output_dir / "mc_histogram.png"); plt.close(fig)
     # tornado

@@ -1,10 +1,10 @@
 {
   "workbook": "Business_Valuation.xlsx",
-  "workbook_sha256": "e2f2e210d2705c4b52fc01b044d6a6208384c8e1c282c205c2b6e2c5d4adfc22",
-  "valuation_date": "2026-07-31",
+  "workbook_sha256": "a1c2cf09bb08966613aa131d3cbe0846569ce348f430375bf70a488d9e809693",
+  "valuation_date": "2026-10-25",
   "checks": {
     "base_operating_ev": {
-      "maximum_absolute_error_usdm": 4.540150985121727e-05,
+      "maximum_absolute_error_usdm": 0.00010038726031780243,
       "tolerance_usdm": 0.02,
       "passed": true
     },
@@ -44,49 +44,49 @@
       "passed": true
     },
     "pv_explicit": {
-      "maximum_absolute_error_usdm": 1.2852076906710863e-05,
+      "maximum_absolute_error_usdm": 7.061549695208669e-06,
       "tolerance_usdm": 0.02,
       "passed": true
     },
     "pv_transition": {
-      "maximum_absolute_error_usdm": 4.489754792302847e-05,
+      "maximum_absolute_error_usdm": 2.515933010727167e-05,
       "tolerance_usdm": 0.02,
       "passed": true
     },
     "pv_terminal": {
-      "maximum_absolute_error_usdm": 0.0003573470748960972,
+      "maximum_absolute_error_usdm": 0.0003659084904938936,
       "tolerance_usdm": 0.02,
       "passed": true
     },
     "bear_scenario_snapshot": {
       "passed": true,
-      "maximum_absolute_error_usdbn": 0.0005857007043061913,
+      "maximum_absolute_error_usdbn": 1.0772339464892866e-08,
       "tolerance_usdbn": 0.1
     },
     "base_scenario_snapshot": {
       "passed": true,
-      "maximum_absolute_error_usdbn": 4.540152076515369e-08,
+      "maximum_absolute_error_usdbn": 1.003872966975905e-07,
       "tolerance_usdbn": 0.1
     },
     "bull_scenario_snapshot": {
       "passed": true,
-      "maximum_absolute_error_usdbn": 0.0008642556158520165,
+      "maximum_absolute_error_usdbn": 2.2425911083701067e-07,
       "tolerance_usdbn": 0.1
     }
   },
   "deterministic_scenarios": {
     "bear": {
-      "operating_ev_usdm": 244345.57648684457,
+      "operating_ev_usdm": 259897.8436584562,
       "starting_return": 0.03584962440856407,
       "terminal_return": 0.03584962440856407
     },
     "base": {
-      "operating_ev_usdm": 2163468.3859545984,
+      "operating_ev_usdm": 2167268.2651003874,
       "starting_return": 0.2009949617779829,
       "terminal_return": 0.12
     },
     "bull": {
-      "operating_ev_usdm": 4042558.130320631,
+      "operating_ev_usdm": 4024888.1710771117,
       "starting_return": 0.25245487871205613,
       "terminal_return": 0.16
     }

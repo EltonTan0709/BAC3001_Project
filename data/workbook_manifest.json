@@ -1,13 +1,15 @@
 {
   "file": "Business_Valuation.xlsx",
-  "sha256": "e2f2e210d2705c4b52fc01b044d6a6208384c8e1c282c205c2b6e2c5d4adfc22",
-  "size_bytes": 150055,
-  "export_date": "2026-10-23",
-  "packaged_at_utc": "2026-10-23T08:59:38.558210+00:00",
-  "valuation_date": "2026-07-31",
+  "sha256": "a1c2cf09bb08966613aa131d3cbe0846569ce348f430375bf70a488d9e809693",
+  "size_bytes": 152051,
+  "export_date": "2026-10-25",
+  "packaged_at_utc": "2026-10-25T05:29:54.209430+00:00",
+  "valuation_date": "2026-10-25",
   "source": "https://docs.google.com/spreadsheets/d/1-NyUseEATKNE5_QYQKMdJhQEkpx-iiyrSXth2f-VLyE/edit",
   "format": "Native Google Sheets XLSX export; formulas and cached values retained",
   "selected_scenario": "Base",
   "units": "USD millions unless specified in the workbook",
-  "notes": "Frozen coursework snapshot. Python reads cached inputs and recomputes the DCF. Recalculate before replacing this file."
+  "notes": "Frozen coursework snapshot. June remains latest Alphabet reported quarter; October market inputs and disclosed subsequent events refreshed. Cash, investment tax bases, some financing claims and NCI retain identified proxies. Python reads cached inputs and recomputes the DCF.",
+  "market_price_date": "2026-10-23",
+  "information_cutoff": "2026-10-25"
 }
