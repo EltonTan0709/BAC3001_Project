@@ -170,6 +170,9 @@ one-off settlement cost is removed from benchmark earnings and its unpaid claim
 is included in EV. These approximations remain part of the investment judgement.
 
 No main-run trial exceeds the refreshed market EV, but the full Bull scenario does.
+Full Bull deliberately combines its scenario anchors, whereas triangular sampling
+favours Base and rarely produces comparably favourable joint combinations. The
+highest of the 10,000 main-run trials is USD 3.24tn, versus USD 4.02tn for full Bull.
 The independent ±2-point WACC stress produces 14 exceedances in 10,000 valid trials
 (0.14%). A zero sample exceedance is not evidence that upside is impossible.
 

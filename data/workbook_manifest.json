@@ -1,9 +1,9 @@
 {
   "file": "Business_Valuation.xlsx",
-  "sha256": "a1c2cf09bb08966613aa131d3cbe0846569ce348f430375bf70a488d9e809693",
-  "size_bytes": 152051,
+  "sha256": "a0b97bea1a7c0252228c646062d356443da472e3b8c9e6701178f96bf99bef52",
+  "size_bytes": 152165,
   "export_date": "2026-10-25",
-  "packaged_at_utc": "2026-10-25T05:29:54.209430+00:00",
+  "packaged_at_utc": "2026-10-25T05:37:56.799595+00:00",
   "valuation_date": "2026-10-25",
   "source": "https://docs.google.com/spreadsheets/d/1-NyUseEATKNE5_QYQKMdJhQEkpx-iiyrSXth2f-VLyE/edit",
   "format": "Native Google Sheets XLSX export; formulas and cached values retained",
