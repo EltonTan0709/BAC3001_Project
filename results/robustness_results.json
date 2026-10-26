@@ -1,7 +1,7 @@
 {
   "trials": 10000,
   "seed": 7,
-  "workbook_sha256": "b8398be8997e8ee713a1eb21611764231bc7628d4e1653146d185bd8604a2731",
+  "workbook_sha256": "fefc03665fb6e3b5e2bc78d2fbee14c7371562db06ac542f3c7b6aa46c409627",
   "units": "USD millions",
   "market_operating_ev": 3749969.8529000003,
   "note": "Conditional frequencies among valid trials. WACC stress draws an independent 18th latent variable.",
