@@ -34,6 +34,9 @@ class WorkbookInputs:
             raise ValueError("Expected Assumptions!B6:G6 = H2 2026, 2027 ... 2031. Update the mapping for a new horizon.")
         if self.number("Assumptions", "B147") != 5:
             raise ValueError("This replica implements a five-year transition (2032-2036).")
+        if "capacity benchmark" not in str(self.book["Assumptions"]["A192"].value).lower():
+            raise ValueError("This engine requires the post-build revision: Assumptions!A192 "
+                             "must identify capital intensity relative to the capacity benchmark.")
 
     def number(self, sheet, cell):
         value = self.book[sheet][cell].value
@@ -84,17 +87,10 @@ class WorkbookInputs:
                 scen[key][case] = values
         scalar = {"commission": self.scalar_cases(63), "hw_life": self.scalar_cases(68),
                   "research_elast": self.scalar_cases(53)}
-        for key, start in {"fund_defer": 178, "fund_pressure": 183, "term_return": 193,
+        for key, start in {"fund_defer": 178, "fund_pressure": 183, "capital_intensity": 193,
                            "term_growth": 198, "ai_unit": 208, "ai_workload": 213,
                            "research_h2": 223}.items():
             scalar[key] = tuple(a(f"B{r}") for r in range(start, start + 3))
-        # The workbook's Bear ceiling links to WACC and must move during WACC stress.
-        formula_book = load_workbook(self.path, data_only=False, read_only=False)
-        bear_formula = str(formula_book["Assumptions"]["B195"].value).lower()
-        if bear_formula.startswith("=") and math.isclose(
-                scalar["term_return"][2], n("Valuation", "B29"), abs_tol=1e-9):
-            scalar["term_return"] = (*scalar["term_return"][:2], None)
-        formula_book.close()
         # These components are common across the three cases in the source workbook.
         # Receivables use days / 365; liabilities offset operating assets.
         nowc_ex_inv = self.common_path(104) / 365 + self.common_path(114)

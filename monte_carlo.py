@@ -26,7 +26,7 @@ from alphabet_model import value
 
 DRIVERS = ["search", "yt", "net", "subs", "cloud_demand", "cloud_margin", "capex_int",
            "commission", "hw_life", "tac_change", "ai_unit", "ai_workload",
-           "research_elast", "ob_cost", "funding", "term_return", "term_growth"]
+           "research_elast", "ob_cost", "funding", "capital_intensity", "term_growth"]
 LABELS = {
     "search": "Search growth", "yt": "YouTube ad growth", "net": "Network growth",
     "subs": "Subscriptions growth", "cloud_demand": "Cloud demand growth",
@@ -35,21 +35,21 @@ LABELS = {
     "tac_change": "TAC partner pricing", "ai_unit": "AI unit-cost gain",
     "ai_workload": "AI workload growth", "research_elast": "Research cost elasticity",
     "ob_cost": "Other Bets (revenue and cost)", "funding": "Customer-funding stress",
-    "term_return": "Terminal return ceiling",
+    "capital_intensity": "Post-build capital intensity",
     "term_growth": "Terminal growth"}
 
 # Latent Gaussian correlations (analyst assumption; positive = tend toward Bull together)
 CORR_PAIRS = {("search", "yt"): 0.5, ("search", "subs"): 0.4, ("yt", "subs"): 0.4,
               ("search", "net"): 0.3, ("cloud_demand", "cloud_margin"): 0.4,
-              ("cloud_demand", "capex_int"): 0.4, ("cloud_margin", "term_return"): 0.3,
-              ("search", "term_return"): 0.3, ("commission", "cloud_demand"): 0.3,
+              ("cloud_demand", "capex_int"): 0.4, ("cloud_margin", "capital_intensity"): 0.3,
+              ("search", "capital_intensity"): 0.3, ("commission", "cloud_demand"): 0.3,
               ("funding", "cloud_demand"): 0.3}
 
 CORR_ROWS = {("search", "yt"): 24, ("search", "subs"): 25, ("yt", "subs"): 26,
              ("search", "net"): 27, ("cloud_demand", "cloud_margin"): 28,
              ("cloud_demand", "capex_int"): 29, ("commission", "cloud_demand"): 30,
-             ("funding", "cloud_demand"): 31, ("cloud_margin", "term_return"): 32,
-             ("search", "term_return"): 33}
+             ("funding", "cloud_demand"): 31, ("cloud_margin", "capital_intensity"): 32,
+             ("search", "capital_intensity"): 33}
 
 def refresh_bridge():
     """Read the same Base bridge as the workbook; simulation holds this bridge fixed."""
@@ -113,8 +113,7 @@ def run(n=10000, tax_explicit=None, nci=None, seed=7):
     global FLOOR_BIND_TRIALS
     FLOOR_BIND_TRIALS = int(sum(bool(r.get("floor_bind", np.zeros(1)).any()) for r in outs))
     claims = CLAIMS_EX_NCI + nci
-    # trials where the starting return on new capital is not positive have no defined terminal
-    # value in the workbook (#N/A); they are reported separately and excluded from percentiles
+    # Invalid growth/discount-rate combinations are reported separately and excluded from percentiles.
     equity = ev + NON_OP - claims
     market_ev = MARKET_CAP + claims - NON_OP
     return ev, equity, market_ev, zs
@@ -143,7 +142,7 @@ def reverse_dcf(target, tax_explicit=None):
         except ValueError:
             return None
     out["terminal_margin"] = solve("term_margin", 0.3, 0.9)
-    out["terminal_return"] = solve("term_return", 0.0926, 50)
+    out["capital_intensity"] = solve("capital_intensity", 0.1, 2.0)
     out["capex_scale"] = solve("capex_scale", 0.05, 1.0)
     out["cloud_margin_add"] = solve("cloud_margin_add", 0.0, 1.0)
     return out
@@ -226,7 +225,7 @@ def simulate(n=10000, seed=7, output_dir="results", tax=None, nci=None):
     ax.axvline(0, color="#333", lw=0.8)
     ax.set_xlabel(f"Change in operating EV vs Base of {base/1e6:.2f}tn (USD tn)")
     ax.set_title("What moves the value: one driver at a time")
-    fig.text(0.01, 0.01, "Bull-case CapEx is a larger build, so both CapEx settings lower value.", fontsize=7, color="#555")
+    fig.text(0.01, 0.01, "Scenario settings are joint economic paths; each bar varies only the named driver.", fontsize=7, color="#555")
     ax.spines[["top", "right"]].set_visible(False)
     fig.tight_layout(); fig.savefig(output_dir / "mc_tornado.png"); plt.close(fig)
     return res

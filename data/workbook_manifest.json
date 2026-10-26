@@ -1,15 +1,15 @@
 {
   "file": "Business_Valuation.xlsx",
-  "sha256": "a0b97bea1a7c0252228c646062d356443da472e3b8c9e6701178f96bf99bef52",
-  "size_bytes": 152165,
-  "export_date": "2026-10-25",
-  "packaged_at_utc": "2026-10-25T05:37:56.799595+00:00",
+  "sha256": "b8398be8997e8ee713a1eb21611764231bc7628d4e1653146d185bd8604a2731",
+  "size_bytes": 161794,
+  "export_date": "2026-10-26",
+  "packaged_at_utc": "2026-10-26T11:47:50.860367+00:00",
   "valuation_date": "2026-10-25",
   "source": "https://docs.google.com/spreadsheets/d/1-NyUseEATKNE5_QYQKMdJhQEkpx-iiyrSXth2f-VLyE/edit",
   "format": "Native Google Sheets XLSX export; formulas and cached values retained",
   "selected_scenario": "Base",
   "units": "USD millions unless specified in the workbook",
-  "notes": "Frozen coursework snapshot. June remains latest Alphabet reported quarter; October market inputs and disclosed subsequent events refreshed. Cash, investment tax bases, some financing claims and NCI retain identified proxies. Python reads cached inputs and recomputes the DCF.",
+  "notes": "Post-2031 demand-led revision. Detailed 2026-2031 forecast unchanged; 25 October valuation and 23 October prices retained. Existing CIP is consumed before new purchases, depreciation follows cohorts, and terminal returns use mature capital productivity with a WACC hurdle. Python reads cached inputs and recomputes the DCF.",
   "market_price_date": "2026-10-23",
   "information_cutoff": "2026-10-25"
 }

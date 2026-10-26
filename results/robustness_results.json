@@ -1,19 +1,19 @@
 {
   "trials": 10000,
   "seed": 7,
-  "workbook_sha256": "a0b97bea1a7c0252228c646062d356443da472e3b8c9e6701178f96bf99bef52",
+  "workbook_sha256": "b8398be8997e8ee713a1eb21611764231bc7628d4e1653146d185bd8604a2731",
   "units": "USD millions",
   "market_operating_ev": 3749969.8529000003,
   "note": "Conditional frequencies among valid trials. WACC stress draws an independent 18th latent variable.",
   "runs": {
     "triangular": {
       "p10_p50_p90": [
-        1650730.2028857174,
-        2040644.0578225113,
-        2445912.347844422
+        1993683.1494846616,
+        2361286.090997557,
+        2759314.958687703
       ],
-      "maximum": 3242454.6376145654,
-      "minimum": 989850.1908237438,
+      "maximum": 3625903.421919032,
+      "minimum": 1438396.1757365444,
       "valid_trials": 10000,
       "invalid_trials": 0,
       "above_market_count": 0,
@@ -21,25 +21,25 @@
     },
     "uniform": {
       "p10_p50_p90": [
-        1434356.2517307035,
-        1974986.2790543311,
-        2563259.158175509
+        1794817.0089271066,
+        2288555.9242624557,
+        2856440.3633609256
       ],
-      "maximum": 3602499.0163132716,
-      "minimum": 735017.1431057053,
+      "maximum": 3996455.0813345085,
+      "minimum": 1221623.1329486324,
       "valid_trials": 10000,
       "invalid_trials": 0,
-      "above_market_count": 0,
-      "above_market_frequency": 0.0
+      "above_market_count": 2,
+      "above_market_frequency": 0.0002
     },
     "independent": {
       "p10_p50_p90": [
-        1711716.9875579386,
-        2035145.1623144015,
-        2368798.3595898002
+        2046644.1003485527,
+        2355673.8465725537,
+        2686260.9992119065
       ],
-      "maximum": 3109240.440438507,
-      "minimum": 1178356.7543013077,
+      "maximum": 3472402.6785320463,
+      "minimum": 1525198.6523450557,
       "valid_trials": 10000,
       "invalid_trials": 0,
       "above_market_count": 0,
@@ -47,12 +47,12 @@
     },
     "correlations_x1_3": {
       "p10_p50_p90": [
-        1633113.2804023067,
-        2040497.06952195,
-        2467571.2158680335
+        1980164.0409720556,
+        2362549.578002965,
+        2781495.068652773
       ],
-      "maximum": 3246818.0263836407,
-      "minimum": 964567.2892638477,
+      "maximum": 3625591.903579627,
+      "minimum": 1425870.8554352329,
       "valid_trials": 10000,
       "invalid_trials": 0,
       "above_market_count": 0,
@@ -60,29 +60,29 @@
     },
     "wacc_plus_minus_0.01": {
       "p10_p50_p90": [
-        1617390.7780424536,
-        2034812.245494387,
-        2511494.1804549564
+        1941620.0677307642,
+        2360189.1006099414,
+        2840109.2357201874
       ],
-      "maximum": 3541759.8685833523,
-      "minimum": 953627.9887192775,
+      "maximum": 3863620.9387627,
+      "minimum": 1328361.7237161566,
       "valid_trials": 10000,
       "invalid_trials": 0,
-      "above_market_count": 0,
-      "above_market_frequency": 0.0
+      "above_market_count": 2,
+      "above_market_frequency": 0.0002
     },
     "wacc_plus_minus_0.02": {
       "p10_p50_p90": [
-        1541015.0339057199,
-        2032212.990114471,
-        2684002.105437612
+        1836975.9400658174,
+        2355691.1977490177,
+        3069322.2197502996
       ],
-      "maximum": 4247264.427382955,
-      "minimum": 849112.2833414951,
+      "maximum": 4634156.780477018,
+      "minimum": 1201041.3340367374,
       "valid_trials": 10000,
       "invalid_trials": 0,
-      "above_market_count": 14,
-      "above_market_frequency": 0.0014
+      "above_market_count": 104,
+      "above_market_frequency": 0.0104
     }
   }
 }

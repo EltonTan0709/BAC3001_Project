@@ -1,32 +1,32 @@
-# BAC3001 — Alphabet Valuation and Monte Carlo Simulation
+# BAC3001 â€” Alphabet Valuation and Monte Carlo Simulation
 
 Reproducible Python implementation of Group 9's Alphabet operating DCF, backed by
 the included valuation workbook. The valuation date and information cutoff are
 **25 October 2026**, using **23 October 2026 market closes** (the preceding Friday).
-The workbook snapshot was exported on **25 October 2026**; it is a frozen project version, not a
+The workbook snapshot was exported on **26 October 2026**; it is a frozen project version, not a
 live market-data feed. The written report is excluded from this repository.
 
 ## Repository structure
 
 ```text
 BAC3001_Project/
-├── README.md
-├── requirements.txt                # Tested Python dependencies
-├── requirements-lock.txt           # Exact direct and transitive package versions
-├── alphabet_model.py               # Segment forecast, capital schedule and DCF engine
-├── workbook_inputs.py              # XLSX input mappings and layout checks
-├── monte_carlo.py                  # 17-driver simulation, charts and reverse DCF
-├── robustness.py                   # Distribution, correlation and WACC checks
-├── verify_model.py                 # Python-to-workbook reconciliation
-├── data/
-│   ├── Business_Valuation.xlsx      # Complete formula workbook with cached values
-│   └── workbook_manifest.json      # Source, export date and SHA-256 fingerprint
-└── results/
-    ├── verification.json
-    ├── monte_carlo_results.json
-    ├── robustness_results.json
-    ├── mc_histogram.png
-    └── mc_tornado.png
+â”œâ”€â”€ README.md
+â”œâ”€â”€ requirements.txt                # Tested Python dependencies
+â”œâ”€â”€ requirements-lock.txt           # Exact direct and transitive package versions
+â”œâ”€â”€ alphabet_model.py               # Segment forecast, capital schedule and DCF engine
+â”œâ”€â”€ workbook_inputs.py              # XLSX input mappings and layout checks
+â”œâ”€â”€ monte_carlo.py                  # 17-driver simulation, charts and reverse DCF
+â”œâ”€â”€ robustness.py                   # Distribution, correlation and WACC checks
+â”œâ”€â”€ verify_model.py                 # Python-to-workbook reconciliation
+â”œâ”€â”€ data/
+â”‚   â”œâ”€â”€ Business_Valuation.xlsx      # Complete formula workbook with cached values
+â”‚   â””â”€â”€ workbook_manifest.json      # Source, export date and SHA-256 fingerprint
+â””â”€â”€ results/
+    â”œâ”€â”€ verification.json
+    â”œâ”€â”€ monte_carlo_results.json
+    â”œâ”€â”€ robustness_results.json
+    â”œâ”€â”€ mc_histogram.png
+    â””â”€â”€ mc_tornado.png
 ```
 
 Installed package directories, virtual environments, local audit files and other
@@ -91,7 +91,7 @@ formula results. Python then recomputes segment earnings, Cloud delivery, cohort
 depreciation, operating working capital, FCFF, transition reinvestment and terminal
 value for every trial. It does not execute Excel or Google Sheets formulas.
 
-The explicit forecast covers **H2 2026 and FY2027–2031**, followed by a **2032–2036
+The explicit forecast covers **H2 2026 and FY2027â€“2031**, followed by a **2032â€“2036
 transition** and terminal cash flow from **2037**. FCFF is NOPAT plus PP&E depreciation
 and acquired-intangible amortisation, less cash CapEx and the increase in operating
 working capital, including required operating cash. Model figures are in **USD
@@ -113,17 +113,16 @@ Rounded reference values for the included workbook are:
 
 | Output | Operating EV (USD tn) |
 | --- | ---: |
-| Full Bear scenario | 0.260 |
-| Base | 2.167 |
-| Full Bull scenario | 4.025 |
-| Monte Carlo P10 | 1.651 |
-| Monte Carlo median | 2.041 |
-| Monte Carlo P90 | 2.446 |
+| Full Bear scenario | 0.837 |
+| Base | 2.496 |
+| Full Bull scenario | 4.450 |
+| Monte Carlo P10 | 1.994 |
+| Monte Carlo median | 2.361 |
+| Monte Carlo P90 | 2.759 |
 | Market-implied operating EV | 3.750 |
 
-The workbook-backed version uses unrounded working-capital inputs, improving Base
-reconciliation over the earlier copied-input replica. Differences are below USD 1m
-for these scenario EVs and do not change the report's rounded figures.
+The Python engine and live workbook reconcile within USD 0.001m for all three
+scenario EVs. The included snapshot is exported with Base selected.
 
 `monte_carlo.py` writes:
 
@@ -137,9 +136,39 @@ driver ranges, not a proof of a global optimum. Inventory follows Base in the
 simulation; the full Bear/Bull scenarios also change inventory. Reverse-DCF entries
 of `null` mean no solution was bracketed within that lever's specified search range.
 
+## Post-build revision (26 October 2026)
+
+The detailed 2026–2031 forecast is unchanged. From 2032, required productive assets
+fade from actual 2031 net in-service PP&E to the existing demand-capacity benchmark.
+The benchmark is converted from average to closing assets, then multiplied by
+110% / 100% / 90% in Bear / Base / Bull. These are judgemental efficiency scenarios,
+not measured physical utilisation. The 17-driver structure is retained: capital
+intensity replaces the old terminal-return ceiling as a sampled driver.
+
+Commissioning fills the gap between required assets and the existing assets after
+cohort depreciation. Purchases consume opening CIP first, subject to delivery timing
+and a normal construction pipeline. The model no longer applies a permanent excess-CIP
+EBIT deduction or mechanically replaces every expiring asset after 2031. It assumes
+CIP can support future demand; completion costs and hardware incompatibility are not
+separately estimated. Longer hardware lives reduce the resulting replacement need.
+
+Base CapEx falls from USD 210.1bn in 2031 to USD 185.8bn in 2036; parent tangible
+returns recover from 22.0% to 23.0%. Bear cuts 2032 purchases to USD 50.9bn and reduces
+CIP from USD 390.1bn to USD 247.9bn by 2036, with returns reaching 12.4%. Bull returns
+reach 32.0%. These are average-capital returns, not project IRRs.
+
+Terminal new-project returns use 2036 pre-amortisation NOPAT divided by closing
+tangible capital, with WACC as an approval hurdle. This mature-productivity assumption
+does not uplift earnings on sunk assets and does not repeat a temporary CIP drawdown
+forever. Bear terminal growth is 1.5%; Base and Bull retain 3% and 3.5%.
+
+The formula-based sensitivity tab rebuilds the capital schedule at each growth rate.
+Verification covers all 25 cells, the three scenarios, asset balances, slower delivery
+reducing value, and longer hardware lives reducing replacement spending.
+
 ## Simulation interpretation
 
-Each of 17 drivers receives one position `z` between **−1 (Bear)**, **0 (Base)** and
+Each of 17 drivers receives one position `z` between **âˆ’1 (Bear)**, **0 (Base)** and
 **+1 (Bull)**. Symmetric triangular positions favour the central judgement. A
 Gaussian copula applies the ten assumed latent correlations from `Simulation inputs`.
 One position applies to a driver's whole forecast path, rather than redrawing an
@@ -150,15 +179,15 @@ No 25%/50%/25% or other probabilities are assigned to complete Bear/Base/Bull ca
 P10/P50/P90 describe simulated outputs. The reported exceedance frequency is the
 number of qualifying **valid** trials divided by all valid trials; it is conditional
 on the assumptions, not an estimated real-world probability. Invalid trials are
-counted separately. Guardrails require positive starting returns, terminal return
-above terminal growth, and WACC above terminal growth.
+counted separately. Guardrails require terminal return and WACC above terminal growth. A weak
+one-year incremental return is a diagnostic, not a permanent ceiling on new projects.
 
 `robustness.py` reruns the model with uniform positions, independent drivers,
-stronger latent correlations and independent triangular WACC stresses of ±1 and
-±2 percentage points. Distribution comparisons share latent draws and the copula;
+stronger latent correlations and independent triangular WACC stresses of Â±1 and
+Â±2 percentage points. Distribution comparisons share latent draws and the copula;
 the WACC tests use a separate 18-column random stream, so their 17 operating draws
 differ from the main run. The default is 10,000 trials with seed 7. The uniform
-P10–P90 range is approximately USD 1.43–2.56tn. Full results are committed in JSON.
+P10â€“P90 range is approximately USD 1.43â€“2.56tn. Full results are committed in JSON.
 
 The October refresh uses the latest available Alphabet June results; it does not
 invent September actuals. The bridge estimates elapsed H2 cash flow, dividends and
@@ -172,9 +201,9 @@ is included in EV. These approximations remain part of the investment judgement.
 No main-run trial exceeds the refreshed market EV, but the full Bull scenario does.
 Full Bull deliberately combines its scenario anchors, whereas triangular sampling
 favours Base and rarely produces comparably favourable joint combinations. The
-highest of the 10,000 main-run trials is USD 3.24tn, versus USD 4.02tn for full Bull.
-The independent ±2-point WACC stress produces 14 exceedances in 10,000 valid trials
-(0.14%). A zero sample exceedance is not evidence that upside is impossible.
+highest of the 10,000 main-run trials is USD 3.63tn, versus USD 4.45tn for full Bull.
+The independent Â±2-point WACC stress produces 104 exceedances in 10,000 valid trials
+(1.04%). A zero sample exceedance is not evidence that upside is impossible.
 
 ## Update inputs
 

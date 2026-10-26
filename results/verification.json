@@ -1,10 +1,10 @@
 {
   "workbook": "Business_Valuation.xlsx",
-  "workbook_sha256": "a0b97bea1a7c0252228c646062d356443da472e3b8c9e6701178f96bf99bef52",
+  "workbook_sha256": "b8398be8997e8ee713a1eb21611764231bc7628d4e1653146d185bd8604a2731",
   "valuation_date": "2026-10-25",
   "checks": {
     "base_operating_ev": {
-      "maximum_absolute_error_usdm": 0.00010038726031780243,
+      "maximum_absolute_error_usdm": 0.0003073234111070633,
       "tolerance_usdm": 0.02,
       "passed": true
     },
@@ -39,8 +39,33 @@
       "passed": true
     },
     "transition_fcff": {
-      "maximum_absolute_error_usdm": 3.5348639357835054e-05,
+      "maximum_absolute_error_usdm": 3.329588798806071e-05,
       "tolerance_usdm": 0.02,
+      "passed": true
+    },
+    "transition_capex": {
+      "maximum_absolute_error_usdm": 4.0280778193846345e-05,
+      "tolerance_usdm": 0.02,
+      "passed": true
+    },
+    "transition_depreciation": {
+      "maximum_absolute_error_usdm": 3.777467645704746e-05,
+      "tolerance_usdm": 0.02,
+      "passed": true
+    },
+    "transition_cip": {
+      "maximum_absolute_error_usdm": 4.5085238525643945e-05,
+      "tolerance_usdm": 0.02,
+      "passed": true
+    },
+    "transition_ppe": {
+      "maximum_absolute_error_usdm": 0.00018634996376931667,
+      "tolerance_usdm": 0.02,
+      "passed": true
+    },
+    "transition_roc": {
+      "maximum_absolute_error_ratio": 4.647549012304353e-11,
+      "tolerance_ratio": 1e-08,
       "passed": true
     },
     "pv_explicit": {
@@ -49,46 +74,66 @@
       "passed": true
     },
     "pv_transition": {
-      "maximum_absolute_error_usdm": 2.515933010727167e-05,
+      "maximum_absolute_error_usdm": 0.00013125617988407612,
       "tolerance_usdm": 0.02,
       "passed": true
     },
     "pv_terminal": {
-      "maximum_absolute_error_usdm": 0.0003659084904938936,
+      "maximum_absolute_error_usdm": 0.0003089408855885267,
       "tolerance_usdm": 0.02,
       "passed": true
     },
     "bear_scenario_snapshot": {
       "passed": true,
-      "maximum_absolute_error_usdbn": 1.0772339464892866e-08,
+      "maximum_absolute_error_usdbn": 0.0,
       "tolerance_usdbn": 0.1
+    },
+    "bear_capital_integrity": {
+      "passed": true
     },
     "base_scenario_snapshot": {
       "passed": true,
-      "maximum_absolute_error_usdbn": 1.003872966975905e-07,
+      "maximum_absolute_error_usdbn": 0.0,
       "tolerance_usdbn": 0.1
+    },
+    "base_capital_integrity": {
+      "passed": true
     },
     "bull_scenario_snapshot": {
       "passed": true,
-      "maximum_absolute_error_usdbn": 2.2425911083701067e-07,
+      "maximum_absolute_error_usdbn": 0.0,
       "tolerance_usdbn": 0.1
+    },
+    "bull_capital_integrity": {
+      "passed": true
+    },
+    "slower_commissioning_reduces_value": {
+      "passed": true
+    },
+    "longer_life_reduces_postbuild_replacement": {
+      "passed": true
+    },
+    "all_25_sensitivity_cells": {
+      "maximum_absolute_error_usdtn": 7.863398820973089e-10,
+      "tolerance_usdtn": 1e-08,
+      "passed": true
     }
   },
   "deterministic_scenarios": {
     "bear": {
-      "operating_ev_usdm": 259897.8436584562,
-      "starting_return": 0.03584962440856407,
-      "terminal_return": 0.03584962440856407
+      "operating_ev_usdm": 836723.0139596495,
+      "starting_return": -0.020138471310228383,
+      "terminal_return": 0.12464429797968096
     },
     "base": {
-      "operating_ev_usdm": 2167268.2651003874,
-      "starting_return": 0.2009949617779829,
-      "terminal_return": 0.12
+      "operating_ev_usdm": 2495918.3293073233,
+      "starting_return": 0.16994732470289384,
+      "terminal_return": 0.22884667175464735
     },
     "bull": {
-      "operating_ev_usdm": 4024888.1710771117,
-      "starting_return": 0.25245487871205613,
-      "terminal_return": 0.16
+      "operating_ev_usdm": 4450328.488842512,
+      "starting_return": 0.19338557563447592,
+      "terminal_return": 0.3210133229354656
     }
   },
   "passed": true
