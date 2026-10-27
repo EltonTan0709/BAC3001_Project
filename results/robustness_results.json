@@ -1,7 +1,7 @@
 {
   "trials": 10000,
   "seed": 7,
-  "workbook_sha256": "fefc03665fb6e3b5e2bc78d2fbee14c7371562db06ac542f3c7b6aa46c409627",
+  "workbook_sha256": "561c50244efaa110bcf2ea4bf132ddb8ab1f3a1d6d1830a7ff2a929303d6187a",
   "units": "USD millions",
   "market_operating_ev": 3749969.8529000003,
   "note": "Conditional frequencies among valid trials. WACC stress draws an independent 18th latent variable.",
@@ -84,5 +84,6 @@
       "above_market_count": 104,
       "above_market_frequency": 0.0104
     }
-  }
+  },
+  "workbook_refresh_note": "27 October 2026: presentation-only continuation links added; all pre-existing inputs, formulas and cached results verified unchanged. Simulation draws and valuation outputs unchanged."
 }

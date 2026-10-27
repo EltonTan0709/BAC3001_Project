@@ -1,9 +1,9 @@
 {
   "file": "Business_Valuation.xlsx",
-  "sha256": "fefc03665fb6e3b5e2bc78d2fbee14c7371562db06ac542f3c7b6aa46c409627",
-  "size_bytes": 161794,
-  "export_date": "2026-10-26",
-  "packaged_at_utc": "2026-10-26T11:54:44.028477+00:00",
+  "sha256": "561c50244efaa110bcf2ea4bf132ddb8ab1f3a1d6d1830a7ff2a929303d6187a",
+  "size_bytes": 165006,
+  "export_date": "2026-10-27",
+  "packaged_at_utc": "2026-10-27T06:02:50.679900+00:00",
   "valuation_date": "2026-10-25",
   "source": "https://docs.google.com/spreadsheets/d/1-NyUseEATKNE5_QYQKMdJhQEkpx-iiyrSXth2f-VLyE/edit",
   "format": "Native Google Sheets XLSX export; formulas and cached values retained",
@@ -12,5 +12,5 @@
   "notes": "Post-2031 demand-led revision. Detailed 2026-2031 forecast unchanged; 25 October valuation and 23 October prices retained. Existing CIP is consumed before new purchases, depreciation follows cohorts, and terminal returns use mature capital productivity with a WACC hurdle. Python reads cached inputs and recomputes the DCF.",
   "market_price_date": "2026-10-23",
   "information_cutoff": "2026-10-25",
-  "snapshot_refresh_note": "Fresh native XLSX export checked cell-by-cell against the verified post-build revision; formulas and cached values unchanged."
+  "snapshot_refresh_note": "Added formula-linked 2032-2036 presentation in Operating forecast, Working capital and a consolidated continuation table in Cloud demand. All pre-existing formulas and cached values verified unchanged."
 }

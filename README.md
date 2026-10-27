@@ -3,7 +3,7 @@
 Reproducible Python implementation of Group 9's Alphabet operating DCF, backed by
 the included valuation workbook. The valuation date and information cutoff are
 **25 October 2026**, using **23 October 2026 market closes** (the preceding Friday).
-The workbook snapshot was exported on **26 October 2026**; it is a frozen project version, not a
+The workbook snapshot was exported on **27 October 2026**; it is a frozen project version, not a
 live market-data feed. The written report is excluded from this repository.
 
 ## Repository structure
@@ -137,6 +137,8 @@ simulation; the full Bear/Bull scenarios also change inventory. Reverse-DCF entr
 of `null` mean no solution was bracketed within that lever's specified search range.
 
 ## Post-build revision (26 October 2026)
+
+The Operating forecast and Working capital tabs also display formula-linked 2032–2036 totals. Cloud demand includes a consolidated demand-and-capacity continuation table; separate Cloud projections end in 2031. These presentation links do not change the valuation.
 
 The detailed 2026–2031 forecast is unchanged. From 2032, required productive assets
 fade from actual 2031 net in-service PP&E to the existing demand-capacity benchmark.
