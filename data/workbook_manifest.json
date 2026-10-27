@@ -1,9 +1,9 @@
 {
   "file": "Business_Valuation.xlsx",
-  "sha256": "fccb7a6afefb48785a2ef68023a3cbb2a995602f9e3c4f25ae890dff60c11f2d",
-  "size_bytes": 172621,
+  "sha256": "0ae95c567fd1897ccc9d2fd782a1247d0e23f75ae455b2a3dfac9af741fada2b",
+  "size_bytes": 171580,
   "export_date": "2026-10-27",
-  "packaged_at_utc": "2026-10-27T06:06:02.963894+00:00",
+  "packaged_at_utc": "2026-10-27T06:07:57.269236+00:00",
   "valuation_date": "2026-10-25",
   "source": "https://docs.google.com/spreadsheets/d/1-NyUseEATKNE5_QYQKMdJhQEkpx-iiyrSXth2f-VLyE/edit",
   "format": "Native Google Sheets XLSX export; formulas and cached values retained",
@@ -12,5 +12,5 @@
   "notes": "Post-2031 demand-led revision. Detailed 2026-2031 forecast unchanged; 25 October valuation and 23 October prices retained. Existing CIP is consumed before new purchases, depreciation follows cohorts, and terminal returns use mature capital productivity with a WACC hurdle. Python reads cached inputs and recomputes the DCF.",
   "market_price_date": "2026-10-23",
   "information_cutoff": "2026-10-25",
-  "snapshot_refresh_note": "Filled 2032-2036 working-capital component views at 2031 revenue ratios, with zero reconciliation differences. Marked unmodelled segment detail n/m and historical-only working-capital reconciliation rows n/a. All pre-existing numeric values unchanged."
+  "snapshot_refresh_note": "Cleared n/a display labels from historical-only transition working-capital reconciliations. Formulas and numeric inputs unchanged."
 }

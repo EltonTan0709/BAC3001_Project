@@ -1,6 +1,6 @@
 {
   "workbook": "Business_Valuation.xlsx",
-  "workbook_sha256": "fccb7a6afefb48785a2ef68023a3cbb2a995602f9e3c4f25ae890dff60c11f2d",
+  "workbook_sha256": "0ae95c567fd1897ccc9d2fd782a1247d0e23f75ae455b2a3dfac9af741fada2b",
   "valuation_date": "2026-10-25",
   "checks": {
     "base_operating_ev": {
