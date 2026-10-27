@@ -3,7 +3,7 @@
   "seed": 7,
   "valid_trials": 10000,
   "workbook": "Business_Valuation.xlsx",
-  "workbook_sha256": "561c50244efaa110bcf2ea4bf132ddb8ab1f3a1d6d1830a7ff2a929303d6187a",
+  "workbook_sha256": "fccb7a6afefb48785a2ef68023a3cbb2a995602f9e3c4f25ae890dff60c11f2d",
   "units": "USD millions",
   "valuation_date": "2026-10-25",
   "distribution": "triangular scenario positions; Gaussian copula",
@@ -144,5 +144,5 @@
   ],
   "above_market_count": 0,
   "frequency_note": "Qualifying valid trials / valid trials; conditional on the model, not calibrated real-world odds.",
-  "workbook_refresh_note": "27 October 2026: presentation-only continuation links added; all pre-existing inputs, formulas and cached results verified unchanged. Simulation draws and valuation outputs unchanged."
+  "workbook_refresh_note": "27 October 2026: completed transition presentation and working-capital component breakdown; pre-existing numeric inputs and results unchanged. Simulation outputs unchanged."
 }

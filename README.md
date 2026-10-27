@@ -138,7 +138,7 @@ of `null` mean no solution was bracketed within that lever's specified search ra
 
 ## Post-build revision (26 October 2026)
 
-The Operating forecast and Working capital tabs also display formula-linked 2032–2036 totals. Cloud demand includes a consolidated demand-and-capacity continuation table; separate Cloud projections end in 2031. These presentation links do not change the valuation.
+The Operating forecast and Working capital tabs also display formula-linked 2032–2036 totals. Cloud demand includes a consolidated demand-and-capacity continuation table; separate Cloud projections end in 2031. The working-capital component view holds 2031 component/revenue ratios and reconciles to the existing transition total. `n/m` means a segment item is not separately modelled after 2031; `n/a` marks historical-only reconciliations. These presentation links do not change the valuation.
 
 The detailed 2026–2031 forecast is unchanged. From 2032, required productive assets
 fade from actual 2031 net in-service PP&E to the existing demand-capacity benchmark.
