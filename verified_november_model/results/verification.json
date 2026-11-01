@@ -1,0 +1,140 @@
+{
+  "workbook": "Business_Valuation.xlsx",
+  "workbook_sha256": "f7fd9de6e2d372a2d79c77b17269f62585ea5c98e1d86131565e1ba66248cc12",
+  "valuation_date": "2026-10-25",
+  "checks": {
+    "base_operating_ev": {
+      "maximum_absolute_error_usdm": 0.0003597200848162174,
+      "tolerance_usdm": 0.02,
+      "passed": true
+    },
+    "explicit_capex": {
+      "maximum_absolute_error_usdm": 4.475112655200064e-05,
+      "tolerance_usdm": 0.02,
+      "passed": true
+    },
+    "explicit_depreciation": {
+      "maximum_absolute_error_usdm": 5.002846592105925e-05,
+      "tolerance_usdm": 0.02,
+      "passed": true
+    },
+    "explicit_nopat": {
+      "maximum_absolute_error_usdm": 2.6088120648637414e-05,
+      "tolerance_usdm": 0.02,
+      "passed": true
+    },
+    "explicit_fcff": {
+      "maximum_absolute_error_usdm": 1.366820652037859e-05,
+      "tolerance_usdm": 0.02,
+      "passed": true
+    },
+    "explicit_operating_wc": {
+      "maximum_absolute_error_usdm": 7.654911314602941e-06,
+      "tolerance_usdm": 0.02,
+      "passed": true
+    },
+    "explicit_wc_investment": {
+      "maximum_absolute_error_usdm": 1.4734009710082319e-06,
+      "tolerance_usdm": 0.02,
+      "passed": true
+    },
+    "transition_fcff": {
+      "maximum_absolute_error_usdm": 4.2266532545909286e-05,
+      "tolerance_usdm": 0.02,
+      "passed": true
+    },
+    "transition_capex": {
+      "maximum_absolute_error_usdm": 3.3338816137984395e-05,
+      "tolerance_usdm": 0.02,
+      "passed": true
+    },
+    "transition_depreciation": {
+      "maximum_absolute_error_usdm": 4.603760316967964e-05,
+      "tolerance_usdm": 0.02,
+      "passed": true
+    },
+    "transition_cip": {
+      "maximum_absolute_error_usdm": 3.150865086354315e-05,
+      "tolerance_usdm": 0.02,
+      "passed": true
+    },
+    "transition_ppe": {
+      "maximum_absolute_error_usdm": 0.00018749467562884092,
+      "tolerance_usdm": 0.02,
+      "passed": true
+    },
+    "transition_roc": {
+      "maximum_absolute_error_ratio": 3.639699652779882e-11,
+      "tolerance_ratio": 1e-08,
+      "passed": true
+    },
+    "pv_explicit": {
+      "maximum_absolute_error_usdm": 1.6477599274367094e-05,
+      "tolerance_usdm": 0.02,
+      "passed": true
+    },
+    "pv_transition": {
+      "maximum_absolute_error_usdm": 7.200438994914293e-05,
+      "tolerance_usdm": 0.02,
+      "passed": true
+    },
+    "pv_terminal": {
+      "maximum_absolute_error_usdm": 0.00017250655218958855,
+      "tolerance_usdm": 0.02,
+      "passed": true
+    },
+    "bear_scenario_snapshot": {
+      "passed": true,
+      "maximum_absolute_error_usdbn": 4.014896148873959e-08,
+      "tolerance_usdbn": 0.1
+    },
+    "bear_capital_integrity": {
+      "passed": true
+    },
+    "base_scenario_snapshot": {
+      "passed": true,
+      "maximum_absolute_error_usdbn": 1.2913460523122922e-07,
+      "tolerance_usdbn": 0.1
+    },
+    "base_capital_integrity": {
+      "passed": true
+    },
+    "bull_scenario_snapshot": {
+      "passed": true,
+      "maximum_absolute_error_usdbn": 2.5736790121300146e-07,
+      "tolerance_usdbn": 0.1
+    },
+    "bull_capital_integrity": {
+      "passed": true
+    },
+    "slower_commissioning_reduces_value": {
+      "passed": true
+    },
+    "longer_life_reduces_postbuild_replacement": {
+      "passed": true
+    },
+    "all_25_sensitivity_cells": {
+      "maximum_absolute_error_usdtn": 6.443623412621946e-10,
+      "tolerance_usdtn": 1e-08,
+      "passed": true
+    }
+  },
+  "deterministic_scenarios": {
+    "bear": {
+      "operating_ev_usdm": 863685.3770753025,
+      "starting_return": 0.04358283903575264,
+      "terminal_return": 0.13451984953870644
+    },
+    "base": {
+      "operating_ev_usdm": 2610807.26735972,
+      "starting_return": 0.3223575368930744,
+      "terminal_return": 0.26927276756758733
+    },
+    "bull": {
+      "operating_ev_usdm": 4567145.299454855,
+      "starting_return": 0.20882228070577516,
+      "terminal_return": 0.3299809666468262
+    }
+  },
+  "passed": true
+}

@@ -1,0 +1,160 @@
+{
+  "trials": 10000,
+  "seed": 7,
+  "valid_trials": 10000,
+  "workbook": "Business_Valuation.xlsx",
+  "workbook_sha256": "f7fd9de6e2d372a2d79c77b17269f62585ea5c98e1d86131565e1ba66248cc12",
+  "units": "USD millions",
+  "valuation_date": "2026-10-25",
+  "distribution": "triangular scenario positions; Gaussian copula",
+  "linked_controls": {
+    "capital_intensity": [
+      "capacity_share",
+      "absorption_power"
+    ],
+    "cloud_margin": [
+      "mature_cloud_margin"
+    ],
+    "ob_cost": [
+      "ob_fade"
+    ]
+  },
+  "base_ev": 2610807.26735972,
+  "market_implied_ev": 3749969.8529000003,
+  "ev_p5": 1994453.5402261217,
+  "ev_p10": 2091284.9853728276,
+  "ev_p50": 2469747.752631718,
+  "ev_p90": 2875368.040113315,
+  "ev_p95": 2988406.0011079777,
+  "ev_mean": 2476499.1072305692,
+  "prob_ev_above_market": 0.0,
+  "market_percentile": 100.0,
+  "equity_p10": 2257315.1324728276,
+  "equity_p50": 2635777.8997317175,
+  "equity_p90": 3041398.1872133147,
+  "max_ev": 3711350.349468647,
+  "min_ev": 1519826.434251743,
+  "invalid_trials": 0,
+  "all_bull": 4567145.299454855,
+  "all_bear": 863685.3770753025,
+  "reverse_dcf": {
+    "terminal_margin_input_before_recovery": 0.43712500572064517,
+    "terminal_margin": 0.4772382699722257,
+    "capital_intensity": null,
+    "capex_scale": null,
+    "cloud_margin_add": 0.36875632859619145
+  },
+  "max_combo_ev": 4628364.828199213,
+  "max_combo": {
+    "search": 1.0,
+    "yt": 1.0,
+    "net": -1.0,
+    "subs": 1.0,
+    "cloud_demand": 1.0,
+    "cloud_margin": 1.0,
+    "capex_int": 0.5,
+    "commission": 1.0,
+    "hw_life": 1.0,
+    "tac_change": 1.0,
+    "ai_unit": 1.0,
+    "ai_workload": 0.0,
+    "research_elast": 1.0,
+    "ob_cost": 1.0,
+    "funding": 1.0,
+    "capital_intensity": 1.0,
+    "term_growth": 1.0
+  },
+  "floor_bind_trials": 1,
+  "max_combo_ev_wacc_minus_10bp": 4722815.457075931,
+  "max_combo_breakeven_wacc": 0.10516603785770712,
+  "base_breakeven_wacc": 0.07666677847417305,
+  "tornado": [
+    [
+      "Search growth",
+      2235884.1924755257,
+      3023204.809828357
+    ],
+    [
+      "Cloud margin",
+      2307551.965017451,
+      2773540.3831046955
+    ],
+    [
+      "Terminal growth",
+      2290288.9844379965,
+      2752345.9678227226
+    ],
+    [
+      "Cloud demand growth",
+      2530036.8928406965,
+      2922068.844166775
+    ],
+    [
+      "Capital productivity / absorption",
+      2302207.0807783646,
+      2674117.8780660313
+    ],
+    [
+      "AI unit-cost gain",
+      2464722.650675987,
+      2747678.4555651313
+    ],
+    [
+      "Hardware life",
+      2501123.3443413684,
+      2686283.7140513407
+    ],
+    [
+      "Subscriptions growth",
+      2527513.5801393976,
+      2682681.4852543976
+    ],
+    [
+      "Commissioning rate",
+      2506681.2389879636,
+      2650795.0275119296
+    ],
+    [
+      "Research cost elasticity",
+      2528292.722844599,
+      2647106.6420283434
+    ],
+    [
+      "YouTube ad growth",
+      2552183.21331359,
+      2668490.3530602762
+    ],
+    [
+      "Other Bets (growth and recovery)",
+      2508772.5079852566,
+      2618357.2911918825
+    ],
+    [
+      "AI workload growth",
+      2487021.6587634906,
+      2568599.155108184
+    ],
+    [
+      "TAC partner pricing",
+      2580490.42635836,
+      2641124.1083610794
+    ],
+    [
+      "Customer-funding stress",
+      2580959.754965191,
+      2622804.571454332
+    ],
+    [
+      "CapEx intensity",
+      2552958.0615886105,
+      2589866.1087663905
+    ],
+    [
+      "Network growth",
+      2616417.044812318,
+      2605724.910414777
+    ]
+  ],
+  "above_market_count": 0,
+  "frequency_note": "Qualifying valid trials / valid trials; conditional on the model, not calibrated real-world odds."
+}
