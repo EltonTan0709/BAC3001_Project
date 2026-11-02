@@ -23,6 +23,9 @@ class WorkbookInputs:
             raise FileNotFoundError(f"Workbook not found: {self.path}")
         self.sha256 = hashlib.sha256(self.path.read_bytes()).hexdigest()
         self.book = load_workbook(self.path, data_only=True, read_only=False)
+        # The live workbook renamed "Valuation" to "Valuation Summary" (Nov 2026); accept either.
+        if "Valuation" not in self.book.sheetnames and "Valuation Summary" in self.book.sheetnames:
+            self.book["Valuation Summary"].title = "Valuation"
         required = {"Valuation", "Assumptions", "Historical base", "Financial assets",
                     "Working capital", "Capital and FCFF", "Transition", "Simulation inputs"}
         missing = required.difference(self.book.sheetnames)
