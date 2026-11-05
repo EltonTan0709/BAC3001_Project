@@ -227,6 +227,12 @@ def value(z=None, tax_explicit=None, tax_terminal=None, mid_year=None, overrides
         tr_capital.append((opening_capital+ppe+wc)/2); tr_wc.append(wc)
         tr_comm.append(c); tr_target.append(target); actual.append(cx+dwc-d)
         tr_dbg.append((cx,d,cip)); wc_prev=wc
+    # Recognised intangibles enter operating-capital returns, not physical capacity.
+    # Amortisation is already deducted in EBIT and added back in FCFF.
+    intang31 = max(INTANG_INDEFINITE, INTANG_OPEN - float(np.sum(INTANG)))
+    intang_close = np.maximum(INTANG_INDEFINITE, intang31 - np.cumsum(amort_t[:5]))
+    intang_open = np.r_[intang31, intang_close[:-1]]
+    tr_capital = np.asarray(tr_capital) + (intang_open + intang_close) / 2
     tr_dep=np.array(tr_dep); actual=np.array(actual)
     mr=pre_da_margin-tr_dep/rev_t[:5]
     override=o.get("term_margin",TERM_MARGIN_OVERRIDE)
@@ -243,7 +249,7 @@ def value(z=None, tax_explicit=None, tax_terminal=None, mid_year=None, overrides
     growth_nop_t=rev_t*mr-np.maximum(0,rev_t*mr)*tx
     # Terminal new projects reflect mature capital productivity, subject to the
     # investment hurdle. This does not uplift earnings on Bear's sunk assets.
-    RT=max(WACC,growth_nop_t[4]/(ppe+wc_prev))
+    RT=max(WACC,growth_nop_t[4]/(ppe+wc_prev+intang_close[-1]))
     if not (RT>gT and WACC>gT):
         return dict(ev=np.nan,valid=False,r0=np.nan,RT=RT)
     fcff_t=nop_t[:5]+amort_t[:5]-actual

@@ -1,6 +1,6 @@
-# Alphabet valuation — verified 1 November 2026 revision
+# Alphabet valuation — verified 6 November 2026 revision
 
-This separate audit package preserves the repository's original frozen version.
+This is the current reproducible model. The earlier October package remains archived.
 Valuation cutoff: 25 October 2026, using 23 October closes. This is not a current-price valuation.
 
 ## Files
@@ -51,7 +51,7 @@ The financial-capacity benchmark is not engineering evidence of compute capacity
 | 0.864 | 2.611 | 4.567 | 2.091 | 2.470 | 2.875 |
 
 Mean EV is 2.476tn. At a fixed Base financial-assets/claims bridge, mean equity
-is 2.643tn. Main-run maximum EV is 3.711tn against market-implied 3.750tn;
+is 2.642tn. Main-run maximum EV is 3.711tn against market-implied 3.750tn;
 zero of 10,000 trials reaches it. This is not proof of zero real-world probability.
 Uniform positions produce 9 exceedances; WACC ±1pp produces 8 and ±2pp 196.
 All runs have 10,000 valid trials. The favourable coordinate search reaches
@@ -61,4 +61,32 @@ All three native scenario EVs and all 25 sensitivity cells reconcile within 0.01
 Reverse DCF's reported margin includes the separate recovery uplifts; its raw
 workbook margin override is an intermediate input. SOTP is retained in the workbook
 and is not recomputed in each trial. The Base equity bridge is held fixed in the
-simulation. The original GitHub package has not been overwritten or pushed.
+simulation. Deterministic scenarios use their respective equity bridges: Bear
+1.009tn, Base 2.777tn and Bull 4.741tn. These bridges are not scenario probabilities.
+
+## Capital definition and comparability
+
+Operating capital includes net PP&E, recognised net operating intangibles and
+adjusted operating working capital (including required cash of 2% of revenue).
+Goodwill remains excluded: the ratio measures operating efficiency, not total
+acquisition returns. Research is expensed and operating leases retain their
+existing expense treatment, so this is not a comprehensive economic ROIC.
+
+June 2026 net intangibles are USD 9,105m. Existing finite-lived assets run off
+through the amortisation schedule; USD 211m of indefinite-lived assets remains
+in terminal capital. Amortisation is already reflected in EBIT and added back
+in FCFF. Including the asset in the return denominator does not add acquisition
+spending or asset value a second time.
+
+December 2024 and June 2025 net intangibles use USD 1,283m each as a labelled
+analyst proxy from the disclosed December 2025 balance. The opening amounts
+were not separately disclosed in the checked filings. Doubling or removing
+the proxy gives FY2025 returns of 44.0–44.3% and TTM June 2026 returns of
+39.4–39.5%; the central values are 44.2% and 39.4%. See Historical base and
+Sources and basis for the reconciliation. Forecast 2036 return is 27.1%;
+terminal new-capital return is 26.9%, a separate modelling assumption.
+
+The workbook's relative valuation uses CY2027 analyst EBIT forecasts, rather
+than consensus estimates or trailing multiples. Shared D&A is allocated and
+reconciled to the DCF. Forward SOTP equity is USD 2.90–3.56tn (central 3.23tn).
+Peer accounting and business mixes remain imperfectly comparable.

@@ -55,10 +55,10 @@ def refresh_bridge():
     """Read the same Base bridge as the workbook; simulation holds this bridge fixed."""
     global MARKET_CAP, NON_OP, CLAIMS_EX_NCI, NCI_PLACEHOLDER
     n = am.WORKBOOK.number
-    MARKET_CAP = n("Valuation", "B7")
-    NON_OP = n("Valuation", "B49")
-    NCI_PLACEHOLDER = n("Valuation", "B17")
-    CLAIMS_EX_NCI = sum(n("Valuation", cell) for cell in ("B8", "B13", "B14", "B16"))
+    MARKET_CAP = n("Valuation Summary", "B7")
+    NON_OP = n("Valuation Summary", "B49")
+    NCI_PLACEHOLDER = n("Valuation Summary", "B17")
+    CLAIMS_EX_NCI = sum(n("Valuation Summary", cell) for cell in ("B8", "B13", "B14", "B16"))
     for pair, row in CORR_ROWS.items():
         r = n("Simulation inputs", f"B{row}")
         if not -1 <= r <= 1:

@@ -23,10 +23,10 @@ class WorkbookInputs:
             raise FileNotFoundError(f"Workbook not found: {self.path}")
         self.sha256 = hashlib.sha256(self.path.read_bytes()).hexdigest()
         self.book = load_workbook(self.path, data_only=True, read_only=False)
-        # The live workbook renamed "Valuation" to "Valuation Summary" (Nov 2026); accept either.
-        if "Valuation" not in self.book.sheetnames and "Valuation Summary" in self.book.sheetnames:
-            self.book["Valuation Summary"].title = "Valuation"
-        required = {"Valuation", "Assumptions", "Historical base", "Financial assets",
+        # Preserve compatibility with exports made before the display-tab rename.
+        if "Valuation Summary" not in self.book.sheetnames and "Valuation" in self.book.sheetnames:
+            self.book["Valuation"].title = "Valuation Summary"
+        required = {"Valuation Summary", "Assumptions", "Historical base", "Financial assets",
                     "Working capital", "Capital and FCFF", "Transition", "Simulation inputs"}
         missing = required.difference(self.book.sheetnames)
         if missing:
@@ -105,7 +105,7 @@ class WorkbookInputs:
             nowc_ex_inv -= self.common_path(first_row)
         cip, ppe = n("Historical base", "E74"), n("Historical base", "E72")
         opening_hw = (ppe - cip) * a("B89")
-        raw_date = self.book["Valuation"]["B4"].value
+        raw_date = self.book["Valuation Summary"]["B4"].value
         val_date = raw_date.date() if isinstance(raw_date, datetime) else raw_date
         if not isinstance(val_date, date):
             raise ValueError("Valuation!B4 must contain an Excel date.")
@@ -140,6 +140,8 @@ class WorkbookInputs:
             SERV_TAC_DIFF=a("B227"), AI_EXPOSURE=a("B217"),
             RESEARCH_SHARE=a("B220"), OTHER_SHARED_GROWTH=a("B221"),
             INTANG=self.row("Capital and FCFF", 25), INTANG_TAIL=tail,
+            INTANG_OPEN=n("Balance sheet", "I22"),
+            INTANG_INDEFINITE=n("Capital and FCFF", "B111"),
             INTANG_TAX_DEDUCTIBLE=a("B239"), NOWC_EX_INV=nowc_ex_inv,
             NOWC_OPEN=n("Working capital", "C29"),
             OPERATING_CASH_RATIO=n("Financial assets", "B30"),
@@ -151,10 +153,10 @@ class WorkbookInputs:
             HW_OPEN=opening_hw, OTH_OPEN=ppe-cip-opening_hw,
             HW_OPEN_LIFE=a("B90"), OTH_OPEN_LIFE=a("B91"),
             HW_SHARE=float(self.common_path(73)[0]), OTH_LIFE=a("B92"), PERIOD=periods,
-            WACC=n("Valuation", "B29"), TAX_TERMINAL=a("B149"),
+            WACC=n("Valuation Summary", "B29"), TAX_TERMINAL=a("B149"),
             TAX_EXPLICIT=self.common_path(78), VAL_DATE=val_date,
-            MID_YEAR=bool(n("Valuation", "B24")), TERM_MARGIN_OVERRIDE=margin_override,
-            STUB_FRAC=n("Valuation", "B36"),
+            MID_YEAR=bool(n("Valuation Summary", "B24")), TERM_MARGIN_OVERRIDE=margin_override,
+            STUB_FRAC=n("Valuation Summary", "B36"),
             YRS_EX=np.array([(date(2026+i, 12, 31)-val_date).days/365 for i in range(6)]),
             YRS_TR=np.array([(date(2032+i, 12, 31)-val_date).days/365 for i in range(5)]),
         )

@@ -1,10 +1,10 @@
 {
   "workbook": "Business_Valuation.xlsx",
-  "workbook_sha256": "f7fd9de6e2d372a2d79c77b17269f62585ea5c98e1d86131565e1ba66248cc12",
+  "workbook_sha256": "a99bd7c1a1b8ca3c7c5795b1ee351ccb923a41594c1533f99e8c14e42fcb0a4b",
   "valuation_date": "2026-10-25",
   "checks": {
     "base_operating_ev": {
-      "maximum_absolute_error_usdm": 0.0003597200848162174,
+      "maximum_absolute_error_usdm": 0.0005167569033801556,
       "tolerance_usdm": 0.02,
       "passed": true
     },
@@ -64,7 +64,7 @@
       "passed": true
     },
     "transition_roc": {
-      "maximum_absolute_error_ratio": 3.639699652779882e-11,
+      "maximum_absolute_error_ratio": 4.231973105284226e-11,
       "tolerance_ratio": 1e-08,
       "passed": true
     },
@@ -79,13 +79,13 @@
       "passed": true
     },
     "pv_terminal": {
-      "maximum_absolute_error_usdm": 0.00017250655218958855,
+      "maximum_absolute_error_usdm": 4.898384213447571e-05,
       "tolerance_usdm": 0.02,
       "passed": true
     },
     "bear_scenario_snapshot": {
       "passed": true,
-      "maximum_absolute_error_usdbn": 4.014896148873959e-08,
+      "maximum_absolute_error_usdbn": 4.014793830720009e-08,
       "tolerance_usdbn": 0.1
     },
     "bear_capital_integrity": {
@@ -93,7 +93,7 @@
     },
     "base_scenario_snapshot": {
       "passed": true,
-      "maximum_absolute_error_usdbn": 1.2913460523122922e-07,
+      "maximum_absolute_error_usdbn": 1.29131421999773e-07,
       "tolerance_usdbn": 0.1
     },
     "base_capital_integrity": {
@@ -101,7 +101,7 @@
     },
     "bull_scenario_snapshot": {
       "passed": true,
-      "maximum_absolute_error_usdbn": 2.5736790121300146e-07,
+      "maximum_absolute_error_usdbn": 2.573624442447908e-07,
       "tolerance_usdbn": 0.1
     },
     "bull_capital_integrity": {
@@ -114,26 +114,26 @@
       "passed": true
     },
     "all_25_sensitivity_cells": {
-      "maximum_absolute_error_usdtn": 6.443623412621946e-10,
+      "maximum_absolute_error_usdtn": 8.766241066382463e-10,
       "tolerance_usdtn": 1e-08,
       "passed": true
     }
   },
   "deterministic_scenarios": {
     "bear": {
-      "operating_ev_usdm": 863685.3770753025,
+      "operating_ev_usdm": 863668.2907241737,
       "starting_return": 0.04358283903575264,
-      "terminal_return": 0.13451984953870644
+      "terminal_return": 0.13448984790589943
     },
     "base": {
-      "operating_ev_usdm": 2610807.26735972,
+      "operating_ev_usdm": 2610764.440483243,
       "starting_return": 0.3223575368930744,
-      "terminal_return": 0.26927276756758733
+      "terminal_return": 0.2692206169920796
     },
     "bull": {
-      "operating_ev_usdm": 4567145.299454855,
+      "operating_ev_usdm": 4567090.825116958,
       "starting_return": 0.20882228070577516,
-      "terminal_return": 0.3299809666468262
+      "terminal_return": 0.329934366539708
     }
   },
   "passed": true

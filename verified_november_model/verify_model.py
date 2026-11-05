@@ -9,7 +9,7 @@ import alphabet_model as am
 
 def verify(output_dir=Path("results")):
     w = am.WORKBOOK
-    if w.book["Valuation"]["B3"].value != "Base":
+    if w.book["Valuation Summary"]["B3"].value != "Base":
         raise ValueError("Select Base, recalculate and save/export the workbook before verification.")
     b = am.value()
     checks = {}
@@ -20,11 +20,11 @@ def verify(output_dir=Path("results")):
                         "passed": bool(error <= tolerance)}
 
     n = w.number
-    compare("base_operating_ev", b["ev"], n("Valuation", "B48"))
+    compare("base_operating_ev", b["ev"], n("Valuation Summary", "B48"))
     compare("explicit_capex", b["capex"], w.row("Capital and FCFF", 12))
     compare("explicit_depreciation", b["dep"], w.row("Capital and FCFF", 24))
     compare("explicit_nopat", b["nopat"], w.row("Capital and FCFF", 31))
-    compare("explicit_fcff", b["fcff"], w.row("Valuation", 37))
+    compare("explicit_fcff", b["fcff"], w.row("Valuation Summary", 37))
     compare("explicit_operating_wc", b["operating_wc"], w.row("Working capital", 59, 5, 10))
     compare("explicit_wc_investment", b["d_operating_wc"], w.row("Working capital", 62, 5, 10))
     compare("transition_fcff", b["transition_fcff"], w.row("Transition", 16, 3, 7))
@@ -33,9 +33,9 @@ def verify(output_dir=Path("results")):
     compare("transition_cip", b["transition_cip"], w.row("Capital and FCFF", 15, 8, 12))
     compare("transition_ppe", b["transition_ppe"], w.row("Capital and FCFF", 26, 8, 12))
     compare("transition_roc", b["transition_roc"], w.row("Capital and FCFF", 40, 8, 12), tolerance=1e-8, unit="ratio")
-    compare("pv_explicit", b["pv_ex"], sum(w.row("Valuation", 39)))
+    compare("pv_explicit", b["pv_ex"], sum(w.row("Valuation Summary", 39)))
     compare("pv_transition", b["pv_tr"], sum(w.row("Transition", 20, 3, 7)))
-    compare("pv_terminal", b["pv_tv"], n("Valuation", "B46"))
+    compare("pv_terminal", b["pv_tv"], n("Valuation Summary", "B46"))
     cases = {}
     for case, row in (("bear", 46), ("base", 47), ("bull", 48)):
         r = am.scenario(case)
@@ -58,7 +58,7 @@ def verify(output_dir=Path("results")):
     checks["slower_commissioning_reduces_value"] = {"passed": bool(slow["ev"] < fast["ev"])}
     checks["longer_life_reduces_postbuild_replacement"] = {"passed": bool(
         long["transition_capex"].sum() < short["transition_capex"].sum())}
-    bridge = n("Valuation", "B49")-n("Valuation", "B50")
+    bridge = n("Valuation Summary", "B49")-n("Valuation Summary", "B50")
     w0 = am.WACC
     try:
         grid=[]
